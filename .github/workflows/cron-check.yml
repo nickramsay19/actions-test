@@ -3,12 +3,14 @@ name: cron check
 
 on:
   schedule:
-    - cron: '* * * * *'  # Runs at minute 0 of every hour (i.e., hourly)
-  workflow_dispatch:      # Optional: allows manual trigger
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: source env
-        run: source .env
+        run: |
+          pwd
+          ls 
