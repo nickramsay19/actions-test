@@ -10,14 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v4
-      - name: source env
-        run: source .env
       - name: do stuff
+        uses: actions/checkout@v4
         run: |
           LATEST_VERSION="$(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" 'https://api.github.com/repos/OasisLMF/OasisLMF/releases/latest' 2> '/dev/null' |  curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" 'https://api.github.com/repos/OasisLMF/OasisLMF/releases/latest' 2> '/dev/null' | grep -E '"name": "Release [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+",' | grep -oE '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]')"
-          if [[ $VERSION != $LATEST_VERSION ]]; then
+
+          source .env
+          CURRENT_VERSION="$VERSION"
+
+          echo "LATEST_VERSION='$LATEST_VERSION'"
+          echo "CURRENT_VERSION='$CURRENT_VERSION'"
+
+          if [[ "$VERSION" != "$LATEST_VERSION" ]]; then
             echo 'not the same version!'
           else
             echo 'the same version'
