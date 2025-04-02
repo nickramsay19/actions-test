@@ -3,7 +3,7 @@ name: Run every hour
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs at minute 0 of every hour (i.e., hourly)
+    - cron: '* * * * *'  # Runs at minute 0 of every hour (i.e., hourly)
   workflow_dispatch:      # Optional: allows manual trigger
 
 jobs:
