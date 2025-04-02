@@ -1,0 +1,14 @@
+# .github/workflows/hourly.yml
+name: Run every hour
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs at minute 0 of every hour (i.e., hourly)
+  workflow_dispatch:      # Optional: allows manual trigger
+
+jobs:
+  hourly-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello! This runs every hour."
