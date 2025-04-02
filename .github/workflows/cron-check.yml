@@ -1,0 +1,14 @@
+# .github/workflows/hourly.yml
+name: cron check
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Runs at minute 0 of every hour (i.e., hourly)
+  workflow_dispatch:      # Optional: allows manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: source env
+        run: source .env
